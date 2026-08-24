@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<template id="__bundler_thumbnail" data-bg-color="#3b2129">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#d98a4f" stroke-width="4"/>
+    <text x="100" y="95" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#f3ece2">TB</text>
+    <text x="100" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="10" letter-spacing="2" fill="#d98a4f">TIO BACO</text>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:oklch(96% 0.016 78);}
+a{color:oklch(60% 0.13 45);text-decoration:none;}
+a:hover{color:oklch(48% 0.13 45);}
+::selection{background:oklch(78% 0.1 45 / 0.4);}
+</style>
+</helmet>
+
+<div style="font-family:'Work Sans',sans-serif;background:oklch(96% 0.016 78)">
+
+<header style="position:sticky;top:0;z-index:50;background:oklch(96% 0.016 78 / 0.93);backdrop-filter:blur(8px);border-bottom:1px solid oklch(85% 0.02 60)">
+  <div style="max-width:1240px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;line-height:1">
+      <span style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:22px;letter-spacing:0.02em;color:oklch(19% 0.02 30)">TÍO BACO</span>
+      <span style="font-size:10px;letter-spacing:0.22em;color:oklch(58% 0.13 45);margin-top:3px;font-weight:600">VINOS Y EXPERIENCIAS</span>
+    </div>
+    <nav style="display:flex;gap:26px;flex-wrap:wrap;font-size:15px;font-weight:500;color:oklch(19% 0.02 30)">
+      <a href="#historia" style="color:inherit">Historia</a>
+      <a href="#experiencias" style="color:inherit">Experiencias</a>
+      <sc-if value="{{ showClub }}" hint-placeholder-val="{{ true }}"><a href="#eventos" style="color:inherit">Eventos</a></sc-if>
+      <a href="#vinos" style="color:inherit">Vinos</a>
+      <a href="#contacto" style="color:inherit">Contacto</a>
+    </nav>
+    <a href="https://wa.link/fhtyi4" target="_blank" rel="noopener" style="background:oklch(27% 0.075 18);color:oklch(97% 0.01 70);padding:10px 22px;border-radius:999px;font-weight:600;font-size:14px;white-space:nowrap" style-hover="background:oklch(20% 0.06 18)">Reservar</a>
+  </div>
+</header>
+
+<sc-if value="{{ heroOverlay }}" hint-placeholder-val="{{ true }}">
+<section style="position:relative;min-height:86vh;display:flex;align-items:flex-end;background:oklch(16% 0.05 18);overflow:hidden">
+  <img src="extracted/tb_hero_local.jpg" alt="Salón de Tío Baco durante una cata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg, oklch(16% 0.05 18 / 0.15), oklch(16% 0.05 18 / 0.94))"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto;padding:0 32px 76px;width:100%;box-sizing:border-box">
+    <p style="font-size:12px;letter-spacing:0.22em;color:oklch(80% 0.08 45);text-transform:uppercase;margin:0 0 18px;font-weight:600">Coronel Pringles</p>
+    <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(38px,6vw,74px);line-height:1.03;color:oklch(97% 0.01 70);margin:0 0 22px;max-width:800px">Vinos y experiencias en el corazón del pueblo</h1>
+    <p style="font-size:clamp(16px,1.6vw,19px);color:oklch(88% 0.02 60);max-width:540px;margin:0 0 34px;line-height:1.55">Un espacio para descorchar, compartir y volver. Música en vivo, clases de maridaje y una carta que cambia con las estaciones.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <button type="button" onClick="{{ abrirReserva }}" style="background:oklch(60% 0.13 45);color:oklch(15% 0.02 30);padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;border:0;cursor:pointer;font-family:inherit" style-hover="background:oklch(67% 0.13 45)">Reservar una experiencia</button>
+      <sc-if value="{{ showClub }}" hint-placeholder-val="{{ true }}"><a href="#eventos" style="border:1.5px solid oklch(85% 0.02 60 / 0.55);color:oklch(97% 0.01 70);padding:14px 28px;border-radius:999px;font-weight:600;font-size:15px" style-hover="background:oklch(97% 0.01 70 / 0.1)">Ver eventos</a></sc-if>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ heroSplit }}" hint-placeholder-val="{{ false }}">
+<section style="display:flex;flex-wrap:wrap;min-height:78vh">
+  <div style="flex:1 1 440px;background:oklch(27% 0.075 18);display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,96px);box-sizing:border-box">
+    <p style="font-size:12px;letter-spacing:0.22em;color:oklch(80% 0.08 45);text-transform:uppercase;margin:0 0 18px;font-weight:600">Coronel Pringles</p>
+    <h1 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(34px,4.4vw,58px);line-height:1.05;color:oklch(97% 0.01 70);margin:0 0 22px">Vinos y experiencias en el corazón del pueblo</h1>
+    <p style="font-size:17px;color:oklch(88% 0.02 60);margin:0 0 32px;line-height:1.55;max-width:440px">Un espacio para descorchar, compartir y volver. Música en vivo, clases de maridaje y una carta que cambia con las estaciones.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <button type="button" onClick="{{ abrirReserva }}" style="background:oklch(60% 0.13 45);color:oklch(15% 0.02 30);padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;border:0;cursor:pointer;font-family:inherit" style-hover="background:oklch(67% 0.13 45)">Reservar una experiencia</button>
+      <sc-if value="{{ showClub }}" hint-placeholder-val="{{ true }}"><a href="#eventos" style="border:1.5px solid oklch(85% 0.02 60 / 0.55);color:oklch(97% 0.01 70);padding:14px 28px;border-radius:999px;font-weight:600;font-size:15px" style-hover="background:oklch(97% 0.01 70 / 0.1)">Ver eventos</a></sc-if>
+    </div>
+  </div>
+  <div style="flex:1 1 440px;min-height:380px">
+    <img src="extracted/tb_hero_local.jpg" alt="Salón de Tío Baco durante una cata" style="width:100%;height:100%;object-fit:cover;display:block">
+  </div>
+</section>
+</sc-if>
+
+<section id="historia" style="padding:clamp(64px,9vw,120px) 0;background:oklch(96% 0.016 78)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:flex;gap:64px;flex-wrap:wrap;align-items:center;box-sizing:border-box">
+    <div style="flex:1 1 380px;min-width:280px">
+      <img src="extracted/tb_historia.jpg" alt="Cata guiada en el salón de Tío Baco" style="width:100%;border-radius:6px;display:block;object-fit:cover;aspect-ratio:4/5">
+    </div>
+    <div style="flex:1 1 380px;min-width:280px">
+      <p style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:oklch(58% 0.13 45);margin:0 0 12px;font-weight:600">Nuestra historia</p>
+      <h2 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);color:oklch(19% 0.02 30);margin:0 0 20px;line-height:1.05">De dónde salimos</h2>
+      <p style="font-size:16px;line-height:1.75;color:oklch(32% 0.02 30);margin:0 0 18px">Tío Baco nació como una vinoteca de barrio y se convirtió en punto de encuentro. Catas, música en vivo, peñas, clases de maridaje y café de la mañana: cada día tiene una excusa distinta para abrir una botella.</p>
+      <p style="font-size:16px;line-height:1.75;color:oklch(32% 0.02 30);margin:0">Elegimos vinos de bodegas chicas y los servimos sin vueltas, en un lugar pensado para quedarse.</p>
+    </div>
+  </div>
+</section>
+
+<section id="experiencias" style="padding:clamp(64px,9vw,120px) 0;background:oklch(99% 0.008 80)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box">
+    <p style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:oklch(58% 0.13 45);margin:0 0 12px;font-weight:600">Agenda</p>
+    <h2 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);color:oklch(19% 0.02 30);margin:0 0 14px;line-height:1.05">Experiencias</h2>
+    <p style="font-size:17px;color:oklch(38% 0.02 30);max-width:480px;margin:0 0 48px;line-height:1.5">Agenda variable, vino constante.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px">
+
+      <div style="position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/5">
+        <img src="extracted/tb_exp_musica.jpg" alt="Música en vivo en Tío Baco" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, oklch(16% 0.05 18 / 0.88))"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:24px">
+          <h3 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:22px;color:oklch(97% 0.01 70);margin:0 0 8px">Música en vivo</h3>
+          <p style="font-size:14px;color:oklch(88% 0.02 60);margin:0;line-height:1.5">Guitarra, copa en mano y el salón lleno hasta la última canción.</p>
+        </div>
+      </div>
+
+      <div style="position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/5">
+        <img src="extracted/tb_exp_clases.jpg" alt="Clase de sushi y maridaje" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, oklch(16% 0.05 18 / 0.88))"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:24px">
+          <h3 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:22px;color:oklch(97% 0.01 70);margin:0 0 8px">Clases y maridajes</h3>
+          <p style="font-size:14px;color:oklch(88% 0.02 60);margin:0;line-height:1.5">Sushi, quesos o chocolates: aprendés a maridar y te lo comés.</p>
+        </div>
+      </div>
+
+      <div style="position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/5">
+        <img src="extracted/tb_exp_penas.jpg" alt="Peña de guitarras entre las estanterías" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, oklch(16% 0.05 18 / 0.88))"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:24px">
+          <h3 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:22px;color:oklch(97% 0.01 70);margin:0 0 8px">Peñas y guitarras</h3>
+          <p style="font-size:14px;color:oklch(90% 0.02 60);margin:0;line-height:1.5">Cuatro guitarras entre las estanterías y un tinto que acompaña.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ showClub }}" hint-placeholder-val="{{ true }}">
+<section id="eventos" style="padding:clamp(64px,9vw,120px) 0;background:oklch(27% 0.075 18)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box">
+    <p style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:oklch(76% 0.1 45);margin:0 0 12px;font-weight:600">Este mes</p>
+    <h2 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);color:oklch(97% 0.01 70);margin:0 0 14px;line-height:1.05">Eventos del mes</h2>
+    <p style="font-size:17px;color:oklch(85% 0.02 60);max-width:480px;margin:0 0 40px;line-height:1.5">Cerámica y vino, y clases de pintura.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:48px">
+      <img src="extracted/tb_club_estante.jpg" alt="Estantería de vinos de Tío Baco" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block">
+      <img src="extracted/tb_club_picada.jpg" alt="Tabla de quesos y fiambres" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block">
+      <img src="extracted/tb_club_cafe.jpg" alt="Café y pastelería de la casa" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block">
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px">
+
+      <div style="background:oklch(99% 0.008 80);border-radius:10px;padding:32px;display:flex;flex-direction:column;border:2px solid oklch(60% 0.13 45)">
+        <p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:oklch(58% 0.13 45);margin:0 0 10px;font-weight:700">Sábados</p>
+        <h3 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;color:oklch(19% 0.02 30);margin:0 0 12px">Cerámica y vino</h3>
+        <p style="font-size:15px;color:oklch(38% 0.02 30);margin:0 0 28px;line-height:1.6;flex:1">Levantás una pieza en torno con las manos en el barro y una copa al lado. Te llevás lo que hiciste.</p>
+        <a href="https://wa.link/fhtyi4" target="_blank" rel="noopener" style="text-align:center;background:oklch(60% 0.13 45);color:oklch(15% 0.02 30);font-weight:700;padding:12px 20px;border-radius:999px;font-size:14px">Reservar lugar</a>
+      </div>
+
+      <div style="background:oklch(99% 0.008 80);border-radius:10px;padding:32px;display:flex;flex-direction:column">
+        <p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:oklch(58% 0.13 45);margin:0 0 10px;font-weight:700">Miércoles</p>
+        <h3 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:24px;color:oklch(19% 0.02 30);margin:0 0 12px">Clases de pintura</h3>
+        <p style="font-size:15px;color:oklch(38% 0.02 30);margin:0 0 28px;line-height:1.6;flex:1">Lienzo, pinceles y una botella abierta. Sin experiencia previa, con acompañamiento durante toda la clase.</p>
+        <a href="https://wa.link/fhtyi4" target="_blank" rel="noopener" style="text-align:center;background:oklch(27% 0.075 18);color:oklch(97% 0.01 70);font-weight:600;padding:12px 20px;border-radius:999px;font-size:14px">Reservar lugar</a>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section id="vinos" style="padding:clamp(64px,9vw,120px) 0;background:oklch(96% 0.016 78)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box">
+    <p style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:oklch(58% 0.13 45);margin:0 0 12px;font-weight:600">Carta</p>
+    <h2 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);color:oklch(19% 0.02 30);margin:0 0 14px;line-height:1.05">La carta</h2>
+    <p style="font-size:17px;color:oklch(38% 0.02 30);max-width:480px;margin:0 0 48px;line-height:1.5">Bodegas chicas, producciones limitadas.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-bottom:44px">
+
+      <div>
+        <div style="aspect-ratio:3/4;border-radius:6px;overflow:hidden;margin-bottom:14px;background:oklch(93% 0.012 70)">
+          <img src="extracted/tb_v_mastrantonio.jpg" alt="D.J. Mastrantonio" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <h4 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:oklch(19% 0.02 30);margin:0 0 4px">D.J. Mastrantonio</h4>
+        <p style="font-size:13px;color:oklch(45% 0.02 30);margin:0">Red Blend 2018</p>
+      </div>
+
+      <div>
+        <div style="aspect-ratio:3/4;border-radius:6px;overflow:hidden;margin-bottom:14px;background:oklch(93% 0.012 70)">
+          <img src="extracted/tb_v_goye.jpg" alt="Goye" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <h4 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:oklch(19% 0.02 30);margin:0 0 4px">Goye</h4>
+        <p style="font-size:13px;color:oklch(45% 0.02 30);margin:0">Malbec Roble y Chardonnay</p>
+      </div>
+
+      <div>
+        <div style="aspect-ratio:3/4;border-radius:6px;overflow:hidden;margin-bottom:14px;background:oklch(93% 0.012 70)">
+          <img src="extracted/tb_v_casual.jpg" alt="Siempre y Cuando" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <h4 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:oklch(19% 0.02 30);margin:0 0 4px">Siempre y Cuando</h4>
+        <p style="font-size:13px;color:oklch(45% 0.02 30);margin:0">Malbec Rosé</p>
+      </div>
+
+      <div>
+        <div style="aspect-ratio:3/4;border-radius:6px;overflow:hidden;margin-bottom:14px;background:oklch(93% 0.012 70)">
+          <img src="extracted/tb_v_aniello.jpg" alt="Aniello" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <h4 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:oklch(19% 0.02 30);margin:0 0 4px">Aniello</h4>
+        <p style="font-size:13px;color:oklch(45% 0.02 30);margin:0">Blend de Rosé, Río Negro</p>
+      </div>
+
+      <div>
+        <div style="aspect-ratio:3/4;border-radius:6px;overflow:hidden;margin-bottom:14px;background:oklch(93% 0.012 70)">
+          <img src="extracted/tb_v_cuarzo.jpg" alt="Ribera del Cuarzo" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <h4 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:oklch(19% 0.02 30);margin:0 0 4px">Ribera del Cuarzo</h4>
+        <p style="font-size:13px;color:oklch(45% 0.02 30);margin:0">Malbec de Patagonia</p>
+      </div>
+
+      <div>
+        <div style="aspect-ratio:3/4;border-radius:6px;overflow:hidden;margin-bottom:14px;background:oklch(93% 0.012 70)">
+          <img src="extracted/tb_v_nicasia.jpg" alt="Nicasia Vineyards" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+        </div>
+        <h4 style="font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:oklch(19% 0.02 30);margin:0 0 4px">Nicasia Vineyards</h4>
+        <p style="font-size:13px;color:oklch(45% 0.02 30);margin:0">Red Blend, Valle de Uco</p>
+      </div>
+
+    </div>
+    <a href="#contacto" style="font-weight:600;font-size:15px">Pedí la carta completa →</a>
+  </div>
+</section>
+
+<section style="padding:clamp(64px,9vw,120px) 0;background:oklch(99% 0.008 80)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box">
+    <p style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:oklch(58% 0.13 45);margin:0 0 12px;font-weight:600">Instagram</p>
+    <h2 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);color:oklch(19% 0.02 30);margin:0 0 14px;line-height:1.05">Desde adentro</h2>
+    <p style="font-size:17px;color:oklch(38% 0.02 30);max-width:480px;margin:0 0 40px;line-height:1.5">Lo que pasa entre botella y botella.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:32px">
+      <img src="extracted/tb_club_picada.jpg" alt="Tabla de quesos y fiambres" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block">
+      <img src="extracted/tb_ig_cafe.jpg" alt="Café y budín de limón" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block">
+      <img src="extracted/tb_ig_bottles.jpg" alt="Selección de Syrah" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block">
+      <img src="extracted/tb_ig_choco.jpg" alt="Box de degustación de chocolates" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block">
+    </div>
+    <a href="https://www.instagram.com/tiobaco" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px">@tiobaco · Seguinos en Instagram →</a>
+  </div>
+</section>
+
+<section id="contacto" style="padding:clamp(64px,9vw,120px) 0;background:oklch(16% 0.05 18)">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:flex;gap:64px;flex-wrap:wrap;box-sizing:border-box">
+    <div style="flex:1 1 360px;min-width:280px">
+      <p style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:oklch(76% 0.1 45);margin:0 0 12px;font-weight:600">Visitanos</p>
+      <h2 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);color:oklch(97% 0.01 70);margin:0 0 28px;line-height:1.05">Te esperamos con una copa</h2>
+      <div style="display:flex;flex-direction:column;gap:18px;font-size:16px;color:oklch(85% 0.02 60);line-height:1.5">
+        <p style="margin:0"><strong style="color:oklch(97% 0.01 70)">Dónde</strong><br>Belgrano 502<br>Coronel Pringles, Buenos Aires</p>
+        <div style="margin:0;display:flex;flex-direction:column;gap:10px">
+          <strong style="color:oklch(97% 0.01 70)">Cuándo</strong>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:space-between;border-bottom:1px solid oklch(97% 0.01 70 / 0.14);padding-bottom:8px">
+              <span style="color:oklch(97% 0.01 70)">Lunes a viernes</span>
+              <span>8:00–12:30 · 16:00–20:30 hs</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:space-between">
+              <span style="color:oklch(97% 0.01 70)">Sábado</span>
+              <span>10:00–13:00 · 16:00–23:30 hs</span>
+            </div>
+          </div>
+        </div>
+        <p style="margin:0"><strong style="color:oklch(97% 0.01 70)">Contacto</strong><br>Soledad Pérez<br>011 5753 5603 · <a href="https://www.instagram.com/tiobaco" target="_blank" rel="noopener" style="color:oklch(76% 0.1 45)">@tiobaco</a></p>
+      </div>
+      <a href="https://wa.link/fhtyi4" target="_blank" rel="noopener" style="display:inline-block;margin-top:28px;background:oklch(60% 0.13 45);color:oklch(15% 0.02 30);padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px" style-hover="background:oklch(67% 0.13 45)">Escribinos por WhatsApp</a>
+    </div>
+    <div style="flex:1 1 360px;min-width:280px;display:flex;align-items:stretch">
+      <iframe title="Mapa Belgrano 502, Coronel Pringles" src="https://www.google.com/maps?q=Belgrano+502,+Coronel+Pringles,+Buenos+Aires,+Argentina&output=embed" style="width:100%;min-height:280px;border:0;border-radius:8px;display:block" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+
+<sc-if value="{{ reservaAbierta }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ cerrarReserva }}" style="position:fixed;inset:0;z-index:200;background:oklch(13% 0.04 18 / 0.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box">
+  <div onClick="{{ pararClick }}" style="background:oklch(99% 0.008 80);border-radius:12px;padding:clamp(28px,4vw,40px);width:100%;max-width:520px;box-sizing:border-box;max-height:90vh;overflow:auto;box-shadow:0 24px 60px oklch(13% 0.04 18 / 0.4)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:6px">
+      <div>
+        <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:oklch(58% 0.13 45);margin:0 0 8px;font-weight:700">Reservas</p>
+        <h3 style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:28px;color:oklch(19% 0.02 30);margin:0;line-height:1.1">Reservá tu experiencia</h3>
+      </div>
+      <button type="button" onClick="{{ cerrarReserva }}" aria-label="Cerrar" style="background:none;border:0;font-size:26px;line-height:1;color:oklch(45% 0.02 30);cursor:pointer;padding:4px 6px;font-family:inherit">×</button>
+    </div>
+    <p style="font-size:14px;color:oklch(45% 0.02 30);margin:12px 0 26px;line-height:1.6">Completá los datos y se abre WhatsApp con el mensaje listo para enviar a Soledad.</p>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:oklch(30% 0.02 30)">Nombre y apellido
+        <input type="text" value="{{ fNombre }}" onChange="{{ setNombre }}" placeholder="Soledad Pérez" style="font-family:inherit;font-size:15px;padding:12px 14px;border:1px solid oklch(82% 0.02 60);border-radius:8px;background:oklch(100% 0 0);color:oklch(19% 0.02 30);font-weight:400;box-sizing:border-box;width:100%">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:oklch(30% 0.02 30)">Experiencia
+        <select value="{{ fExperiencia }}" onChange="{{ setExperiencia }}" style="font-family:inherit;font-size:15px;padding:12px 14px;border:1px solid oklch(82% 0.02 60);border-radius:8px;background:oklch(100% 0 0);color:oklch(19% 0.02 30);font-weight:400;box-sizing:border-box;width:100%">
+          <option>Cerámica y vino</option>
+          <option>Clases de pintura</option>
+          <option>Música en vivo</option>
+          <option>Clases y maridajes</option>
+          <option>Peñas y guitarras</option>
+          <option>Otra / no sé todavía</option>
+        </select>
+      </label>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <label style="flex:1 1 160px;display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:oklch(30% 0.02 30)">Fecha
+          <input type="date" value="{{ fFecha }}" onChange="{{ setFecha }}" style="font-family:inherit;font-size:15px;padding:12px 14px;border:1px solid oklch(82% 0.02 60);border-radius:8px;background:oklch(100% 0 0);color:oklch(19% 0.02 30);font-weight:400;box-sizing:border-box;width:100%">
+        </label>
+        <label style="flex:1 1 120px;display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:oklch(30% 0.02 30)">Personas
+          <input type="number" min="1" value="{{ fPersonas }}" onChange="{{ setPersonas }}" style="font-family:inherit;font-size:15px;padding:12px 14px;border:1px solid oklch(82% 0.02 60);border-radius:8px;background:oklch(100% 0 0);color:oklch(19% 0.02 30);font-weight:400;box-sizing:border-box;width:100%">
+        </label>
+      </div>
+      <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:oklch(30% 0.02 30)">Comentario (opcional)
+        <textarea rows="3" value="{{ fNota }}" onChange="{{ setNota }}" placeholder="Alergias, cumpleaños, horario preferido…" style="font-family:inherit;font-size:15px;padding:12px 14px;border:1px solid oklch(82% 0.02 60);border-radius:8px;background:oklch(100% 0 0);color:oklch(19% 0.02 30);font-weight:400;box-sizing:border-box;width:100%;resize:vertical"></textarea>
+      </label>
+      <button type="button" onClick="{{ enviarReserva }}" style="background:oklch(60% 0.13 45);color:oklch(15% 0.02 30);padding:15px 28px;border-radius:999px;font-weight:700;font-size:15px;border:0;cursor:pointer;font-family:inherit;margin-top:4px" style-hover="background:oklch(67% 0.13 45)">Enviar por WhatsApp</button>
+      <p style="font-size:12px;color:oklch(52% 0.02 30);margin:0;text-align:center">Atiende Soledad Pérez · 011 5753 5603</p>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<footer style="background:oklch(13% 0.04 18);padding:40px 0">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;box-sizing:border-box">
+    <div style="display:flex;flex-direction:column;line-height:1">
+      <span style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:18px;color:oklch(97% 0.01 70)">TÍO BACO</span>
+      <span style="font-size:9px;letter-spacing:0.2em;color:oklch(60% 0.1 45);margin-top:3px;font-weight:600">VINOS Y EXPERIENCIAS</span>
+    </div>
+    <nav style="display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:oklch(70% 0.02 60)">
+      <a href="#historia" style="color:inherit">Historia</a>
+      <a href="#experiencias" style="color:inherit">Experiencias</a>
+      <a href="#vinos" style="color:inherit">Vinos</a>
+      <a href="#contacto" style="color:inherit">Contacto</a>
+    </nav>
+    <div style="display:flex;gap:10px">
+      <a href="https://www.instagram.com/tiobaco" target="_blank" rel="noopener" style="width:36px;height:36px;border-radius:999px;border:1px solid oklch(40% 0.02 30);display:flex;align-items:center;justify-content:center;font-size:12px;color:oklch(80% 0.02 60);font-weight:600">IG</a>
+      <a href="https://wa.link/fhtyi4" target="_blank" rel="noopener" style="width:36px;height:36px;border-radius:999px;border:1px solid oklch(40% 0.02 30);display:flex;align-items:center;justify-content:center;font-size:12px;color:oklch(80% 0.02 60);font-weight:600">WA</a>
+    </div>
+  </div>
+  <div style="max-width:1240px;margin:24px auto 0;padding:20px 32px 0;border-top:1px solid oklch(28% 0.02 30);font-size:13px;color:oklch(55% 0.02 40);box-sizing:border-box">© 2026 Tío Baco. Vinos y experiencias.</div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;heroLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Panel dividido&quot;,&quot;options&quot;:[&quot;Imagen de fondo&quot;,&quot;Panel dividido&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showClub&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Secciones&quot;}}">
+class Component extends DCLogic {
+  state = { reservaAbierta: false, nombre: '', experiencia: 'Cerámica y vino', fecha: '', personas: 2, nota: '' };
+
+  renderVals() {
+    const heroSplit = (this.props.heroLayout ?? 'Imagen de fondo') === 'Panel dividido';
+    const showClub = this.props.showClub ?? true;
+    const set = (k) => (e) => this.setState({ [k]: e.target.value });
+    return {
+      heroSplit, heroOverlay: !heroSplit, showClub,
+      reservaAbierta: this.state.reservaAbierta,
+      abrirReserva: () => this.setState({ reservaAbierta: true }),
+      cerrarReserva: () => this.setState({ reservaAbierta: false }),
+      pararClick: (e) => e.stopPropagation(),
+      fNombre: this.state.nombre, setNombre: set('nombre'),
+      fExperiencia: this.state.experiencia, setExperiencia: set('experiencia'),
+      fFecha: this.state.fecha, setFecha: set('fecha'),
+      fPersonas: this.state.personas, setPersonas: set('personas'),
+      fNota: this.state.nota, setNota: set('nota'),
+      enviarReserva: () => {
+        const s = this.state;
+        const lineas = [
+          '¡Hola Tío Baco! Quiero reservar una experiencia.',
+          s.nombre ? 'Nombre: ' + s.nombre : null,
+          'Experiencia: ' + s.experiencia,
+          s.fecha ? 'Fecha: ' + s.fecha : null,
+          s.personas ? 'Personas: ' + s.personas : null,
+          s.nota ? 'Comentario: ' + s.nota : null,
+        ].filter(Boolean);
+        window.open('https://wa.link/fhtyi4?text=' + encodeURIComponent(lineas.join('\n')), '_blank', 'noopener');
+        this.setState({ reservaAbierta: false });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
